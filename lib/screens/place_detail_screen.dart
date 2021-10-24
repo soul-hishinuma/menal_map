@@ -22,7 +22,7 @@ class PlaceDetailScreen extends StatelessWidget {
             width: double.infinity,
             child: Image.file(
               selectedPlace.image!,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               width: double.infinity,
             ),
           ),

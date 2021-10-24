@@ -8,29 +8,24 @@ import '../widget/location_input.dart';
 import '../models/place.dart';
 import '../widget/select_image.dart';
 
-class AddPlaceScreen extends StatefulWidget {
-  static const routeName = '/add-place';
+class EditPlaceScreen extends StatefulWidget {
+  static const routeName = '/edit-place';
+
 
   @override
-  _AddPlaceScreenState createState() => _AddPlaceScreenState();
+  _EditPlaceScreenState createState() => _EditPlaceScreenState();
 }
 
-class _AddPlaceScreenState extends State<AddPlaceScreen> {
-  // double _value = 0.0;
-  // double _startValue = 0.0;
-  // double _endValue = 0.0;
-  //
-  // void _changeSlider(double e) => setState(() { _value = e; });
-  // void _startSlider(double e) => setState(() { _startValue = e; });
-  // void _endSlider(double e) => setState(() { _endValue = e; });
+class _EditPlaceScreenState extends State<EditPlaceScreen> {
+
+
 
   final _titleController = TextEditingController();
+
+
   File? _pickedImage;
   PlaceLocation? _pickedLocation;
 
-  void _selectImage(File pickedImage) {
-    _pickedImage = pickedImage;
-  }
 
   void _selectedImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -40,7 +35,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     _pickedLocation = PlaceLocation(latitude: lat, longitude: lng);
   }
 
-  void _savePlace() {
+  void _editPlace() {
     if (_titleController.text.isEmpty || _pickedImage == null || _pickedLocation == null) {
       return;
     }
@@ -51,6 +46,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final id = ModalRoute.of(context)!.settings.arguments;
+    // final selectedPlace = Provider.of<GreatPlaces>(context, listen: false).findById(id as String);
     return Scaffold(
       appBar: AppBar(
         title: Text('Add a New Place'),
@@ -72,18 +69,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     SelectedImage(_selectedImage),
                     SizedBox(height: 20),
                     LocationInput(_selectPlace),
-                    // Slider(
-                    //   label: '${_value}',
-                    //   min: 0,
-                    //   max: 100,
-                    //   value: _value,
-                    //   activeColor: Colors.orange,
-                    //   inactiveColor: Colors.blueAccent,
-                    //   divisions: 10,
-                    //   onChanged: _changeSlider,
-                    //   onChangeStart: _startSlider,
-                    //   onChangeEnd: _endSlider,
-                    // ),
                   ],
                 ),
               ),
@@ -91,8 +76,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           ),
           ElevatedButton.icon(
             icon: Icon(Icons.add),
-            label: Text('Add'),
-            onPressed: _savePlace,
+            label: Text('Complete Edit'),
+            onPressed: _editPlace,
           ),
         ],
       ),
